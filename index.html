@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KIVILIZA COMPANY LTD</title>
+
+  <!-- 1. LOAD TAILWIND FIRST -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- 2. TAILWIND CONFIGURATION AFTER -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#fefce8',
+              100: '#fef9c3',
+              500: '#eab308',
+              600: '#ca8a04',
+              700: '#a16207',
+              800: '#854d0e',
+              900: '#713f12',
+            },
+            rwanda: {
+              green: '#00A35C',
+              blue: '#00A3E0',
+              yellow: '#FAD201'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            heading: ['Outfit', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased">
+
+  <!-- 1. TOP ANNOUNCEMENT BAR -->
+  <div class="bg-brand-900 text-amber-100 text-xs sm:text-sm py-2 px-4">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center space-y-1 md:space-y-0 text-center md:text-left">
+      <div class="flex items-center space-x-4 flex-wrap justify-center">
+        <span><i class="fa-solid fa-location-dot text-brand-500 mr-1"></i> Musanze, Near Goico Plaza</span>
+        <span class="hidden sm:inline">|</span>
+        <span class="text-amber-200 font-medium"><i class="fa-regular fa-clock text-brand-500 mr-1"></i> Sunday – Friday: 7:00 AM - 9:00 PM (Closed Saturday)</span>
+      </div>
+      <div class="flex items-center space-x-3 text-xs">
+        <span class="bg-emerald-600 text-white px-2 py-0.5 rounded font-semibold">MTN MoMo & Airtel Money</span>
+        <a href="https://wa.me/250788000000" target="_blank" class="hover:underline text-brand-500 font-bold"><i class="fa-brands fa-whatsapp text-sm mr-1"></i> Order Hotline</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. MAIN HEADER & NAVBAR -->
+  <header class="bg-white shadow-sm sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center space-x-3 group">
+        <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-brand-700 to-brand-500 flex items-center justify-center shadow-md shadow-brand-700/20 group-hover:scale-105 transition">
+          <!-- Custom SVG Emblem with KC & Leaves -->
+          <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v18m0-18l-4 4m4-4l4 4M5 10c0 5 3 9 7 9s7-4 7-9m-14 0C5 6 8 3 12 3s7 3 7 7"></path>
+          </svg>
+        </div>
+        <div>
+          <h1 class="text-xl sm:text-2xl font-black font-heading text-gray-900 tracking-tight leading-none">
+            KIVILIZA <span class="text-brand-600">CO.</span>
+          </h1>
+          <p class="text-[10px] sm:text-xs text-gray-500 font-semibold tracking-wider uppercase mt-0.5">Wholesale & Food Supplier • Musanze</p>
+        </div>
+      </a>
+
+      <!-- Search Bar -->
+      <div class="hidden md:flex flex-1 max-w-lg mx-4">
+        <div class="relative w-full">
+          <input 
+            type="text" 
+            id="searchInput" 
+            onkeyup="searchProducts()" 
+            placeholder="Search soda, cooking oil, Tanzanian rice, flour..." 
+            class="w-full pl-10 pr-4 py-2 bg-gray-100 border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white transition text-sm"
+          >
+          <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-gray-400 text-sm"></i>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center space-x-3">
+        <button onclick="openPaymentModal()" class="hidden sm:flex items-center space-x-1.5 text-xs bg-amber-50 hover:bg-amber-100 text-brand-800 font-semibold border border-brand-200 px-3 py-2 rounded-lg transition">
+          <i class="fa-solid fa-wallet text-brand-600"></i>
+          <span>MoMo Pay Guide</span>
+        </button>
+
+        <!-- Cart Button -->
+        <button onclick="toggleCartDrawer()" class="relative bg-brand-600 hover:bg-brand-700 text-white p-2.5 rounded-xl shadow-md transition flex items-center space-x-2">
+          <i class="fa-solid fa-cart-shopping text-base"></i>
+          <span class="hidden sm:inline font-bold text-sm">Cart</span>
+          <span id="cartCount" class="bg-white text-brand-800 text-xs font-black px-2 py-0.5 rounded-full shadow">0</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Search Bar -->
+    <div class="md:hidden px-4 pb-3">
+      <div class="relative w-full">
+        <input 
+          type="text" 
+          id="searchInputMobile" 
+          onkeyup="searchProductsMobile()" 
+          placeholder="Search products in Musanze..." 
+          class="w-full pl-10 pr-4 py-2 bg-gray-100 border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm"
+        >
+        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-gray-400 text-sm"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- 3. HERO SLIDESHOW SECTION (8 SLIDES) -->
+  <section class="relative bg-gray-900 overflow-hidden">
+    <div id="slideshow" class="relative w-full h-[380px] sm:h-[460px] lg:h-[500px]">
+      
+      <!-- Slide 1: Soft Drinks & Sodas -->
+      <div class="slide absolute inset-0 opacity-100 transition-opacity duration-700 ease-in-out">
+        <img src="c:\Users\ishim\OneDrive\Pictures\YV\Soft Drinks.jpg" alt="Sodas & Soft Drinks" class="w-full h-full object-cover opacity-40">
+        <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-900/40 to-transparent flex items-center">
+          <div class="max-w-7xl mx-auto px-6 text-white space-y-3">
+            <span class="bg-brand-500 text-gray-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Soft Drinks Wholesale</span>
+            <h2 class="text-3xl sm:text-5xl font-black font-heading leading-tight">Chilled Sodas, Energy Drinks & Juices</h2>
+            <p class="text-gray-200 max-w-lg text-sm sm:text-base">Stocking Coca-Cola crates, Energy Drinks, Twist, Malti, & Mustanga in Musanze.</p>
+            <a href="#soft-drinks" class="inline-block bg-brand-500 hover:bg-brand-600 text-gray-900 font-bold px-6 py-2.5 rounded-lg transition shadow-lg text-sm">View Soft Drinks</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2: Sunflower Cooking Oil -->
+      <div class="slide absolute inset-0 opacity-0 transition-opacity duration-700 ease-in-out">
+        <img src="c:\Users\ishim\OneDrive\Pictures\YV\Cooking Oil.jpg" alt="Cooking Oil" class="w-full h-full object-cover opacity-40">
+        <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-900/40 to-transparent flex items-center">
+          <div class="max-w-7xl mx-auto px-6 text-white space-y-3">
+            <span class="bg-amber-400 text-gray-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Premium Cooking Oil</span>
+            <h2 class="text-3xl sm:text-5xl font-black font-heading leading-tight">Sunflower, Yonka & Golden Oils</h2>
+            <p class="text-gray-200 max-w-lg text-sm sm:text-base">5L & 3L pure vegetable and sunflower cooking oils for kitchens and restaurants.</p>
+            <a href="#cooking-oil" class="inline-block bg-amber-400 hover:bg-amber-500 text-gray-900 font-bold px-6 py-2.5 rounded-lg transition shadow-lg text-sm">Explore Oils</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3: Tanzanian Rice -->
+      <div class="slide absolute inset-0 opacity-0 transition-opacity duration-700 ease-in-out">
+        <img src="c:\Users\ishim\OneDrive\Pictures\YV\La base de notre recette du Mokary « le riz….jpg" alt="Tanzanian Rice" class="w-full h-full object-cover opacity-40">
+        <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-900/40 to-transparent flex items-center">
+          <div class="max-w-7xl mx-auto px-6 text-white space-y-3">
+            <span class="bg-emerald-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Grade-1 Rice</span>
+            <h2 class="text-3xl sm:text-5xl font-black font-heading leading-tight">Tanzanian Super & Pakistan Rice</h2>
+            <p class="text-gray-200 max-w-lg text-sm sm:text-base">25kg bulk bags of pure aromatic long-grain rice at best wholesale prices.</p>
+            <a href="#rice" class="inline-block bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-6 py-2.5 rounded-lg transition shadow-lg text-sm">Buy Rice Bags</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 4: Tanzanian Maize Flour -->
+      <div class="slide absolute inset-0 opacity-0 transition-opacity duration-700 ease-in-out">
+        <img src="c:\Users\ishim\OneDrive\Pictures\YV\Maize flour.jpg" alt="Maize Flour Kawunga" class="w-full h-full object-cover opacity-40">
+        <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-900/40 to-transparent flex items-center">
+          <div class="max-w-7xl mx-auto px-6 text-white space-y-3">
+            <span class="bg-yellow-500 text-gray-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Flour & Grains</span>
+            <h2 class="text-3xl sm:text-5xl font-black font-heading leading-tight">Tanzanian Maize Flour (Kawunga)</h2>
+            <p class="text-gray-200 max-w-lg text-sm sm:text-base">First grade white maize flour, Azam wheat flour & high-quality cassava flour.</p>
+            <a href="#flour" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold px-6 py-2.5 rounded-lg transition shadow-lg text-sm">Order Flour Bags</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 5: Mustanga Energy Drink -->
+      <div class="slide absolute inset-0 opacity-0 transition-opacity duration-700 ease-in-out">
+        <img src="c:\Users\ishim\OneDrive\Pictures\YV\Drinks.jpg" alt="Mustanga Energy" class="w-full h-full object-cover opacity-40">
+        <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-900/40 to-transparent flex items-center">
+          <div class="max-w-7xl mx-auto px-6 text-white space-y-3">
+            <span class="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Special Energy Drink</span>
+            <h2 class="text-3xl sm:text-5xl font-black font-heading leading-tight">Mustanga Energy Drink Supply</h2>
+            <p class="text-gray-200 max-w-lg text-sm sm:text-base">Original Mustanga energy drink crates available for retail and wholesale orders.</p>
+            <a href="#soft-drinks" class="inline-block bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-2.5 rounded-lg transition shadow-lg text-sm">Shop Mustanga</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 6: Yonka & Golden Oils -->
+      <div class="slide absolute inset-0 opacity-0 transition-opacity duration-700 ease-in-out">
+        <img src="c:\Users\ishim\OneDrive\Pictures\YV\Oil.jpg" alt="Yonka Cooking Oil" class="w-full h-full object-cover opacity-40">
+        <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-900/40 to-transparent flex items-center">
+          <div class="max-w-7xl mx-auto px-6 text-white space-y-3">
+            <span class="bg-amber-500 text-gray-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Top Brands</span>
+            <h2 class="text-3xl sm:text-5xl font-black font-heading leading-tight">Yonka 3L & Golden Oil 5L</h2>
+            <p class="text-gray-200 max-w-lg text-sm sm:text-base">Guaranteed clean and clear refined cooking oils direct from factory importers.</p>
+            <a href="#cooking-oil" class="inline-block bg-amber-500 hover:bg-amber-600 text-gray-900 font-bold px-6 py-2.5 rounded-lg transition shadow-lg text-sm">View Oils</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 7: Pakistan Grain Rice -->
+      <div class="slide absolute inset-0 opacity-0 transition-opacity duration-700 ease-in-out">
+        <img src="c:\Users\ishim\OneDrive\Pictures\YV\Rice.jpg" alt="Pakistan Rice" class="w-full h-full object-cover opacity-40">
+        <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-900/40 to-transparent flex items-center">
+          <div class="max-w-7xl mx-auto px-6 text-white space-y-3">
+            <span class="bg-sky-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Aromatic Rice</span>
+            <h2 class="text-3xl sm:text-5xl font-black font-heading leading-tight">Pakistan Long Grain Rice (25kg)</h2>
+            <p class="text-gray-200 max-w-lg text-sm sm:text-base">Non-sticky, soft cooking premium long-grain Pakistan rice stock.</p>
+            <a href="#rice" class="inline-block bg-sky-500 hover:bg-sky-600 text-white font-bold px-6 py-2.5 rounded-lg transition shadow-lg text-sm">Get Rice Details</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 8: Warehouse Musanze Near Goico -->
+      <div class="slide absolute inset-0 opacity-0 transition-opacity duration-700 ease-in-out">
+        <img src="c:\Users\ishim\OneDrive\Pictures\YV\4574037117809683.jpg" alt="Musanze Store" class="w-full h-full object-cover opacity-40">
+        <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-900/40 to-transparent flex items-center">
+          <div class="max-w-7xl mx-auto px-6 text-white space-y-3">
+            <span class="bg-rwanda-green text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Visit Us in Musanze</span>
+            <h2 class="text-3xl sm:text-5xl font-black font-heading leading-tight">Located Near Goico Plaza</h2>
+            <p class="text-gray-200 max-w-lg text-sm sm:text-base">Fast delivery around Muhoza, Kinigi, Cyuve, Nyange and all Musanze sectors.</p>
+            <a href="https://wa.me/250788000000" target="_blank" class="inline-block bg-rwanda-green hover:bg-emerald-700 text-white font-bold px-6 py-2.5 rounded-lg transition shadow-lg text-sm"><i class="fa-brands fa-whatsapp mr-2"></i> WhatsApp Order</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <button onclick="prevSlide()" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white w-10 h-10 rounded-full flex items-center justify-center transition">
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+      <button onclick="nextSlide()" class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white w-10 h-10 rounded-full flex items-center justify-center transition">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+
+      <!-- Dots -->
+      <div id="slideDots" class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
+        <!-- Javascript dynamic dots -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 5. CATEGORY TABS NAV -->
+  <section class="bg-white border-b sticky top-[65px] z-30 shadow-xs">
+    <div class="max-w-7xl mx-auto px-4 overflow-x-auto scrollbar-none py-3 flex space-x-3 text-sm font-bold text-gray-600">
+      <a href="#soft-drinks" class="px-4 py-2 bg-amber-50 text-brand-800 rounded-full hover:bg-brand-500 hover:text-white transition shrink-0 flex items-center space-x-2 border border-amber-200">
+        <i class="fa-solid fa-bottle-droplet text-brand-600"></i>
+        <span>Soft Drinks (5)</span>
+      </a>
+      <a href="#cooking-oil" class="px-4 py-2 bg-amber-50 text-brand-800 rounded-full hover:bg-brand-500 hover:text-white transition shrink-0 flex items-center space-x-2 border border-amber-200">
+        <i class="fa-solid fa-oil-can text-brand-600"></i>
+        <span>Cooking Oil (3)</span>
+      </a>
+      <a href="#rice" class="px-4 py-2 bg-amber-50 text-brand-800 rounded-full hover:bg-brand-500 hover:text-white transition shrink-0 flex items-center space-x-2 border border-amber-200">
+        <i class="fa-solid fa-bowl-rice text-brand-600"></i>
+        <span>Rice Bags (2)</span>
+      </a>
+      <a href="#flour" class="px-4 py-2 bg-amber-50 text-brand-800 rounded-full hover:bg-brand-500 hover:text-white transition shrink-0 flex items-center space-x-2 border border-amber-200">
+        <i class="fa-solid fa-wheat-awn text-brand-600"></i>
+        <span>Flour & Kawunga (3)</span>
+      </a>
+       </a>
+      <a href="#others" class="px-4 py-2 bg-purple-50 text-purple-900 rounded-full hover:bg-purple-600 hover:text-white transition shrink-0 flex items-center space-x-2 border border-purple-200">
+        <i class="fa-solid fa-box-open text-purple-600"></i>
+        <span>Others / Household (7)</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- 5. PRODUCTS CATALOG -->
+  <main class="max-w-7xl mx-auto px-4 py-10 space-y-16">
+
+    <!-- SECTION A: SOFT DRINKS -->
+    <section id="soft-drinks" class="scroll-mt-32">
+      <div class="flex items-center justify-between mb-6 border-b pb-3">
+        <div>
+          <h3 class="text-2xl font-bold font-heading text-gray-900 flex items-center space-x-2">
+            <span class="p-2 bg-amber-100 text-brand-700 rounded-lg"><i class="fa-solid fa-bottle-water"></i></span>
+            <span>Soft Drinks & Energy Beverages</span>
+          </h3>
+          <p class="text-xs sm:text-sm text-gray-500">Retail & wholesale crates in Musanze</p>
+        </div>
+        <span class="text-xs bg-amber-100 text-amber-800 font-bold px-3 py-1 rounded-full">5 Products</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- 1. Soda -->
+        <div class="product-card bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition">
+          <div class="relative h-48 bg-gray-100 overflow-hidden">
+            <img src="c:\Users\ishim\OneDrive\Pictures\YV\Soda.jpg" alt="Soda Crate" class="w-full h-full object-cover">
+            <span class="absolute top-3 left-3 bg-brand-600 text-white text-[10px] font-extrabold px-2.5 py-1 rounded-md uppercase">Top Seller</span>
+          </div>
+          <div class="p-5">
+            <h4 class="font-bold text-gray-900 text-lg">Soda (Coca-Cola, Fanta, Sprite)</h4>
+            <p class="text-xs text-gray-500 mt-1 mb-4">Assorted glass bottles crate / plastic bottle packs</p>
+            <div class="flex items-center justify-between pt-3 border-t">
+              <div>
+                <span class="text-xs text-gray-400 block">Wholesale / Crate</span>
+                <span class="text-lg font-black text-brand-700">12,500 RWF</span>
+              </div>
+              <button onclick="addToCart('Soda Crate (Assorted)', 12500)" class="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-1">
+                <i class="fa-solid fa-plus"></i> <span>Add to Cart</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Mirinda -->
+        <div class="product-card bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition">
+          <div class="relative h-48 bg-gray-100 overflow-hidden">
+            <img src="c:\Users\ishim\OneDrive\Pictures\YV\Mirinda juice 🤤.jpg" alt="Mirinda Drink" class="w-full h-full object-cover">
+          </div>
+          <div class="p-5">
+            <h4 class="font-bold text-gray-900 text-lg">Mirinda Pack</h4>
+            <p class="text-xs text-gray-500 mt-1 mb-4">Refreshing carbonated fruit drink pack (24 Bottles)</p>
+            <div class="flex items-center justify-between pt-3 border-t">
+              <div>
+                <span class="text-xs text-gray-400 block">Pack Price</span>
+                <span class="text-lg font-black text-brand-700">10,000 RWF</span>
+              </div>
+              <button onclick="addToCart('Mirinda Drink Pack', 10000)" class="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-1">
+                <i class="fa-solid fa-plus"></i> <span>Add to Cart</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Water -->
+        <div class="product-card bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition">
+          <div class="relative h-48 bg-gray-100 overflow-hidden">
+            <img src="c:\Users\ishim\OneDrive\Pictures\YV\Clean drinking water.jpg" alt="Water" class="w-full h-full object-cover">
+          </div>
+          <div class="p-5">
+            <h4 class="font-bold text-gray-900 text-lg">Water drink Pack</h4>
+            <p class="text-xs text-gray-500 mt-1 mb-4">High performance water drinks (24 Cans/Bottles)</p>
+            <div class="flex items-center justify-between pt-3 border-t">
+              <div>
+                <span class="text-xs text-gray-400 block">Carton Price</span>
+                <span class="text-lg font-black text-brand-700">14,000 RWF</span>
+              </div>
+              <button onclick="addToCart('Water Drink Pack', 14000)" class="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-1">
+                <i class="fa-solid fa-plus"></i> <span>Add to Cart</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Different Drinks -->
+        <div class="product-card bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition">
+          <div class="relative h-48 bg-gray-100 overflow-hidden">
+            <img src="c:\Users\ishim\OneDrive\Pictures\YV\Drinks.jpg" alt="Malti Drink" class="w-full h-full object-cover">
+          </div>
+          <div class="p-5">
+            <h4 class="font-bold text-gray-900 text-lg">Different Drinks Pack</h4>
+            <p class="text-xs text-gray-500 mt-1 mb-4">Rich non-alcoholic malt beverage pack</p>
+            <div class="flex items-center justify-between pt-3 border-t">
+              <div>
+                <span class="text-xs text-gray-400 block">Pack Price</span>
+                <span class="text-lg font-black text-brand-700">13,000 RWF</span>
+              </div>
+              <button onclick="addToCart('Different Drinks', 13000)" class="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-1">
+                <i class="fa-solid fa-plus"></i> <span>Add to Cart</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Delcious Drinks -->
+        <div class="product-card bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition">
+          <div class="relative h-48 bg-gray-100 overflow-hidden">
+            <img src="c:\Users\ishim\OneDrive\Pictures\YV\Soda.jpg" alt="Delcious Drinks" class="w-full h-full object-cover">
+            <span class="absolute top-3 right-3 bg-red-600 text-white text-[10px] font-extrabold px-2 py-0.5 rounded">Hot</span>
+          </div>
+          <div class="p-5">
+            <h4 class="font-bold text-gray-900 text-lg">Delcious Drinks</h4>
+            <p class="text-xs text-gray-500 mt-1 mb-4">Original Mustanga energy beverage crate/pack</p>
+            <div class="flex items-center justify-between pt-3 border-t">
+              <div>
+                <span class="text-xs text-gray-400 block">Pack Price</span>
+                <span class="text-lg font-black text-brand-700">15,000 RWF</span>
+              </div>
+              <button onclick="addToCart('Delcious Drinks Pack', 15000)" class="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-1">
+                <i class="fa-solid fa-plus"></i> <span>Add to Cart</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- SECTION B: COOKING OIL -->
+    <section id="cooking-oil" class="scroll-mt-32">
+      <div class="flex items-center justify-between mb-6 border-b pb-3">
+        <div>
+          <h3 class="text-2xl font-bold font-heading text-gray-900 flex items-center space-x-2">
+            <span class="p-2 bg-amber-100 text-brand-700 rounded-lg"><i class="fa-solid fa-oil-can"></i></span>
+            <span>Refined Cooking Oils</span>
+          </h3>
+          <p class="text-xs sm:text-sm text-gray-500">Pure vegetable and sunflower cooking oils in Musanze</p>
+        </div>
+        <span class="text-xs bg-amber-100 text-amber-800 font-bold px-3 py-1 rounded-full">3 Products</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- 1. Sunflower Oil -->
+        <div class="product-card bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition">
+          <div class="relative h-48 bg-gray-100 overflow-hidden">
+            <img src="c:\Users\ishim\OneDrive\Pictures\YV\sun flower.jpg" alt="Sunflower Oil" class="w-full h-full object-cover">
+          </div>
+          <div class="p-5">
+            <h4 class="font-bold text-gray-900 text-lg">Sunflower Cooking Oil (5 Liters)</h4>
+            <p class="text-xs text-gray-500 mt-1 mb-4">100% pure cholesterol-free sunflower oil container</p>
+            <div class="flex items-center justify-between pt-3 border-t">
+              <div>
+                <span class="text-xs text-gray-400 block">5 Liters Jerrican</span>
+                <span class="text-lg font-black text-brand-700">24,500 RWF</span>
+              </div>
+              <button onclick="addToCart('Sunflower Cooking Oil 5L', 24500)" class="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-1">
+                <i class="fa-solid fa-plus"></i> <span>Add to Cart</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. COOKING OIL -->
+        <div class="product-card bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition">
+          <div class="relative h-48 bg-gray-100 overflow-hidden">
+            <img src="c:\Users\ishim\OneDrive\Pictures\YV\Cooking Oil.jpg" alt="Yonka Oil" class="w-full h-full object-cover">
+          </div>
+          <div class="p-5">
+            <h4 class="font-bold text-gray-900 text-lg">Igihwagar Cooking Oil (3 Liters)</h4>
+            <p class="text-xs text-gray-500 mt-1 mb-4">Popular Igihwagar Cooking Oil brand refined vegetable cooking oil</p>
+            <div class="flex items-center justify-between pt-3 border-t">
+              <div>
+                <span class="text-xs text-gray-400 block">3 Liters Jerrican</span>
+                <span class="text-lg font-black text-brand-700">15,000 RWF</span>
+              </div>
+              <button onclick="addToCart('Yonka Cooking Oil 3L', 15000)" class="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-1">
+                <i class="fa-solid fa-plus"></i> <span>Add to Cart</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Golden Oil -->
+        <div class="product-card bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition">
+          <div class="relative h-48 bg-gray-100 overflow-hidden">
+            <img src="c:\Users\ishim\OneDrive\Pictures\YV\Golden.jpg" alt="Golden Oil" class="w-full h-full object-cover">
+          </div>
+          <div class="p-5">
+            <h4 class="font-bold text-gray-900 text-lg">Golden Sunflower / Veg Oil (5L)</h4>
+            <p class="text-xs text-gray-500 mt-1 mb-4">Golden brand premium refined cooking oil</p>
+            <div class="flex items-center justify-between pt-3 border-t">
+              <div>
+                <span class="text-xs text-gray-400 block">5 Liters Jerrican</span>
+                <span class="text-lg font-black text-brand-700">25,000 RWF</span>
+              </div>
+              <button onclick="addToCart('Golden Oil 5L', 25000)" class="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-1">
+                <i class="fa-solid fa-plus"></i> <span>Add to Cart</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- SECTION C: RICE -->
+    <section id="rice" class="scroll-mt-32">
+      <div class="flex items-center justify-between mb-6 border-b pb-3">
+        <div>
+          <h3 class="text-2xl font-bold font-heading text-gray-900 flex items-center space-x-2">
+            <span class="p-2 bg-emerald-100 text-emerald-800 rounded-lg"><i class="fa-solid fa-bowl-rice"></i></span>
+            <span>Bulk Rice Bags (25KG)</span>
+          </h3>
+          <p class="text-xs sm:text-sm text-gray-500">First grade imported aromatic rice in Musanze</p>
+        </div>
+        <span class="text-xs bg-emerald-100 text-emerald-800 font-bold px-3 py-1 rounded-full">2 Products</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- 1. Tanzanian Rice -->
+        <div class="product-card bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition">
+          <div class="relative h-48 bg-gray-100 overflow-hidden">
+            <img src="c:\Users\ishim\OneDrive\Pictures\YV\Tanzanian rice.jpg" alt="Tanzanian Rice" class="w-full h-full object-cover">
+            <span class="absolute top-3 left-3 bg-emerald-600 text-white text-[10px] font-extrabold px-2.5 py-1 rounded-md uppercase">High Demand</span>
+          </div>
+          <div class="p-5">
+            <h4 class="font-bold text-gray-900 text-lg">Tanzanian Super Rice (25kg)</h4>
+            <p class="text-xs text-gray-500 mt-1 mb-4">Grade-1 aromatic Tanzanian white long grain rice bag</p>
+            <div class="flex items-center justify-between pt-3 border-t">
+              <div>
+                <span class="text-xs text-gray-400 block">25KG Bag</span>
+                <span class="text-lg font-black text-brand-700">36,500 RWF</span>
+              </div>
+              <button onclick="addToCart('Tanzanian Super Rice (25kg)', 36500)" class="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-1">
+                <i class="fa-solid fa-plus"></i> <span>Add to Cart</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Pakistan Rice -->
+        <div class="product-card bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition">
+          <div class="relative h-48 bg-gray-100 overflow-hidden">
+            <img src="c:\Users\ishim\OneDrive\Pictures\YV\Rice.jpg" alt="Pakistan Rice" class="w-full h-full object-cover">
+          </div>
+          <div class="p-5">
+            <h4 class="font-bold text-gray-900 text-lg">Pakistan Long Grain Rice (25kg)</h4>
+            <p class="text-xs text-gray-500 mt-1 mb-4">Super fine non-sticky Pakistan white rice 25kg bag</p>
+            <div class="flex items-center justify-between pt-3 border-t">
+              <div>
+                <span class="text-xs text-gray-400 block">25KG Bag</span>
+                <span class="text-lg font-black text-brand-700">38,000 RWF</span>
+              </div>
+              <button onclick="addToCart('Pakistan Long Grain Rice (25kg)', 38000)" class="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-1">
+                <i class="fa-solid fa-plus"></i> <span>Add to Cart</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- SECTION D: FLOUR -->
+    <section id="flour" class="scroll-mt-32">
+      <div class="flex items-center justify-between mb-6 border-b pb-3">
+        <div>
+          <h3 class="text-2xl font-bold font-heading text-gray-900 flex items-center space-x-2">
+            <span class="p-2 bg-yellow-100 text-yellow-800 rounded-lg"><i class="fa-solid fa-wheat-awn"></i></span>
+            <span>Flour & Grains Supply</span>
+          </h3>
+          <p class="text-xs sm:text-sm text-gray-500">Tanzanian maize flour, Azam wheat flour & cassava flour</p>
+        </div>
+        <span class="text-xs bg-yellow-100 text-yellow-800 font-bold px-3 py-1 rounded-full">3 Products</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- 1. Maize Flour -->
+        <div class="product-card bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition">
+          <div class="relative h-48 bg-gray-100 overflow-hidden">
+            <img src="c:\Users\ishim\OneDrive\Pictures\YV\Maize flour.jpg" alt="Maize Flour" class="w-full h-full object-cover">
+            <span class="absolute top-3 left-3 bg-brand-600 text-white text-[10px] font-extrabold px-2.5 py-1 rounded-md uppercase">Kawunga</span>
+          </div>
+          <div class="p-5">
+            <h4 class="font-bold text-gray-900 text-lg">Tanzanian Maize Flour / Kawunga (25kg)</h4>
+            <p class="text-xs text-gray-500 mt-1 mb-4">First grade pure white maize flour bag for Ugali/Ubugali</p>
+            <div class="flex items-center justify-between pt-3 border-t">
+              <div>
+                <span class="text-xs text-gray-400 block">25KG Bag</span>
+                <span class="text-lg font-black text-brand-700">31,000 RWF</span>
+              </div>
+              <button onclick="addToCart('Tanzanian Maize Flour (25kg)', 31000)" class="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-1">
+                <i class="fa-solid fa-plus"></i> <span>Add to Cart</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Azam Wheat Flour -->
+        <div class="product-card bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition">
+          <div class="relative h-48 bg-gray-100 overflow-hidden">
+            <img src="c:\Users\ishim\OneDrive\Pictures\YV\359232507800611791.jpg" alt="Azam Wheat Flour" class="w-full h-full object-cover">
+          </div>
+          <div class="p-5">
+            <h4 class="font-bold text-gray-900 text-lg">Azam Premium Wheat Flour (10kg)</h4>
+            <p class="text-xs text-gray-500 mt-1 mb-4">Ideal for Chapati, Mandazi, and baking pastries</p>
+            <div class="flex items-center justify-between pt-3 border-t">
+              <div>
+                <span class="text-xs text-gray-400 block">10KG Bag</span>
+                <span class="text-lg font-black text-brand-700">14,500 RWF</span>
+              </div>
+              <button onclick="addToCart('Azam Wheat Flour (10kg)', 14500)" class="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-1">
+                <i class="fa-solid fa-plus"></i> <span>Add to Cart</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Cassava Flour -->
+        <div class="product-card bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition">
+          <div class="relative h-48 bg-gray-100 overflow-hidden">
+            <img src="c:\Users\ishim\OneDrive\Pictures\YV\farine t65.jpg" alt="Cassava Flour" class="w-full h-full object-cover">
+          </div>
+          <div class="p-5">
+            <h4 class="font-bold text-gray-900 text-lg">Pure Cassava Flour (10kg)</h4>
+            <p class="text-xs text-gray-500 mt-1 mb-4">Clean processed dry cassava flour for home cooking</p>
+            <div class="flex items-center justify-between pt-3 border-t">
+              <div>
+                <span class="text-xs text-gray-400 block">10KG Bag</span>
+                <span class="text-lg font-black text-brand-700">12,000 RWF</span>
+              </div>
+              <button onclick="addToCart('Pure Cassava Flour (10kg)', 12000)" class="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-1">
+                <i class="fa-solid fa-plus"></i> <span>Add to Cart</span>
+              </button>
+            </div>
+          </div>
+        </div>
+     
+      </div>
+    </section>
+    <!-- ========================================== -->
+<!-- SECTION: OTHERS (HOUSEHOLD STAPLES & GROCERIES) -->
+<!-- ========================================== -->
+<section id="others" class="max-w-7xl mx-auto px-4 py-8">
+  
+  <!-- Section Title -->
+  <div class="flex items-center justify-between mb-6 border-b pb-3">
+    <div>
+      <h3 class="text-2xl font-bold text-gray-900">Others & Household Staples</h3>
+      <p class="text-sm text-gray-500">Everyday essential groceries sold across Rwanda</p>
+    </div>
+    <span class="bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1 rounded-full uppercase">
+      Musanze Store
+    </span>
+  </div>
+
+  <!-- Products Grid -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
+
+    <!-- 1. BISCUITS -->
+    <div class="product-item bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition duration-200">
+      <img 
+        src="c:\Users\ishim\OneDrive\Pictures\YV\Biscuits.jpg" 
+        alt="Packaged Biscuits" 
+        class="w-full h-52 object-cover bg-gray-100"
+        onerror="this.src='https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=500'"
+      >
+      <div class="p-4">
+        <span class="text-xs bg-amber-100 text-amber-800 px-2.5 py-1 rounded-md font-bold">Others / Snacks</span>
+        <h4 class="font-bold text-gray-800 mt-2 text-lg">Packaged Biscuits (Crate / Pack)</h4>
+        <p class="text-sm text-gray-500 mb-3">Popular Rwanda tea biscuits & Gorilla cookies pack</p>
+        <div class="flex items-center justify-between mt-4">
+          <span class="text-lg font-black text-amber-700">7000 FRW</span>
+          <button 
+            onclick="addToCart('Packaged Biscuits (Pack)', 7000)" 
+            class="bg-amber-600 hover:bg-amber-700 text-white text-sm font-bold px-4 py-2 rounded-lg transition"
+          >
+            + Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. IODIZED SALT -->
+    <div class="product-item bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition duration-200">
+      <img 
+        src="c:\Users\ishim\OneDrive\Pictures\YV\Salt.jpg" 
+        alt="Iodized Cooking Salt" 
+        class="w-full h-52 object-cover bg-gray-100"
+        onerror="this.src='https://images.unsplash.com/photo-1518110168401-f2877ee2e88b?w=500'"
+      >
+      <div class="p-4">
+        <span class="text-xs bg-amber-100 text-amber-800 px-2.5 py-1 rounded-md font-bold">Others / Pantry</span>
+        <h4 class="font-bold text-gray-800 mt-2 text-lg">Iodized Cooking Salt (1kg Packet)</h4>
+        <p class="text-sm text-gray-500 mb-3">Refined fine table salt packet for cooking</p>
+        <div class="flex items-center justify-between mt-4">
+          <span class="text-lg font-black text-amber-700">1500 FRW</span>
+          <button 
+            onclick="addToCart('Iodized Cooking Salt (1kg)', 1500)" 
+            class="bg-amber-600 hover:bg-amber-700 text-white text-sm font-bold px-4 py-2 rounded-lg transition"
+          >
+            + Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. MATCHES (IKIBIRITI / MATCHBOXES) -->
+    <div class="product-item bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition duration-200">
+      <img 
+        src="c:\Users\ishim\OneDrive\Pictures\YV\Great for starting fires, to either take out her….jpg" 
+        alt="Matches Ubwatsi" 
+        class="w-full h-52 object-cover bg-gray-100"
+        onerror="this.src='c:\Users\ishim\OneDrive\Pictures\YV\Great for starting fires, to either take out her….jpg'"
+      >
+      <div class="p-4">
+        <span class="text-xs bg-amber-100 text-amber-800 px-2.5 py-1 rounded-md font-bold">Others / Household</span>
+        <h4 class="font-bold text-gray-800 mt-2 text-lg">Safety Matches / Ikibiriti (Pack of 10)</h4>
+        <p class="text-sm text-gray-500 mb-3">Household kitchen matchboxes bundle</p>
+        <div class="flex items-center justify-between mt-4">
+          <span class="text-lg font-black text-amber-700">1000 FRW</span>
+          <button 
+            onclick="addToCart('Safety Matches Pack of 10', 1000)" 
+            class="bg-amber-600 hover:bg-amber-700 text-white text-sm font-bold px-4 py-2 rounded-lg transition"
+          >
+            + Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. PACKAGED SUGAR -->
+    <div class="product-item bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition duration-200">
+      <img 
+        src="c:\Users\ishim\OneDrive\Pictures\YV\brown sugar.jpg" 
+        alt="Packaged Sugar" 
+        class="w-full h-52 object-cover bg-gray-100"
+        onerror="this.src='https://images.unsplash.com/photo-1581441363689-1f3c3c414635?w=500'"
+      >
+      <div class="p-4">
+        <span class="text-xs bg-amber-100 text-amber-800 px-2.5 py-1 rounded-md font-bold">Others / Pantry</span>
+        <h4 class="font-bold text-gray-800 mt-2 text-lg">White Packaged Sugar (1kg)</h4>
+        <p class="text-sm text-gray-500 mb-3">Clean refined white sugar packet</p>
+        <div class="flex items-center justify-between mt-4">
+          <span class="text-lg font-black text-amber-700">1,800 FRW</span>
+          <button 
+            onclick="addToCart('Packaged Sugar (1kg)', 1800)" 
+            class="bg-amber-600 hover:bg-amber-700 text-white text-sm font-bold px-4 py-2 rounded-lg transition"
+          >
+            + Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. LAUNDRY & WASHING SOAP (ISABUNE) -->
+    <div class="product-item bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition duration-200">
+      <img 
+        src="c:\Users\ishim\OneDrive\Pictures\YV\Soap.jpg" 
+        alt="Bar Soap Isabune" 
+        class="w-full h-52 object-cover bg-gray-100"
+        onerror="this.src='https://images.unsplash.com/photo-1607006482182-3d8916758d9d?w=500'"
+      >
+      <div class="p-4">
+        <span class="text-xs bg-amber-100 text-amber-800 px-2.5 py-1 rounded-md font-bold">Others / Hygiene</span>
+        <h4 class="font-bold text-gray-800 mt-2 text-lg">Laundry Bar Soap / Isabune (1 Bar)</h4>
+        <p class="text-sm text-gray-500 mb-3">Multi-purpose washing & cleaning bar soap</p>
+        <div class="flex items-center justify-between mt-4">
+          <span class="text-lg font-black text-amber-700">1,800 FRW</span>
+          <button 
+            onclick="addToCart('Laundry Bar Soap (1 Bar)', 1800)" 
+            class="bg-amber-600 hover:bg-amber-700 text-white text-sm font-bold px-4 py-2 rounded-lg transition"
+          >
+            + Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Fresh water -->
+    <div class="product-item bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition duration-200">
+      <img 
+        src="c:\Users\ishim\OneDrive\Pictures\YV\Clean drinking water.jpg" 
+        alt="Rwanda Tea" 
+        class="w-full h-52 object-cover bg-gray-100"
+        onerror="this.src='https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=500'"
+      >
+      <div class="p-4">
+        <span class="text-xs bg-amber-100 text-amber-800 px-2.5 py-1 rounded-md font-bold">Others / Fresh water</span>
+        <h4 class="font-bold text-gray-800 mt-2 text-lg">Rwanda Premium Flesh water (1L)</h4>
+        <p class="text-sm text-gray-500 mb-3">Rich in fresh water to good life</p>
+        <div class="flex items-center justify-between mt-4">
+          <span class="text-lg font-black text-amber-700">800 FRW</span>
+          <button 
+            onclick="addToCart('Rwanda Premium Fresh water (1L)', 800)" 
+            class="bg-amber-600 hover:bg-amber-700 text-white text-sm font-bold px-4 py-2 rounded-lg transition"
+          >
+            + Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- 2.Spaghetti  -->
+    <div class="product-item bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition duration-200">
+      <img 
+        src="c:\Users\ishim\OneDrive\Pictures\YV\Spaghetti.jpg" 
+        alt="Spaghetti" 
+        class="w-full h-52 object-cover bg-gray-100"
+        onerror="this.src='https://images.unsplash.com/photo-1518110168401-f2877ee2e88b?w=500'"
+      >
+      <div class="p-4">
+        <span class="text-xs bg-amber-100 text-amber-800 px-2.5 py-1 rounded-md font-bold">Others / Pantry</span>
+        <h4 class="font-bold text-gray-800 mt-2 text-lg"> Cooking Spaghetti (1 Packet)</h4>
+        <p class="text-sm text-gray-500 mb-3">Refined fine table  1 Spaghetti for cooking</p>
+        <div class="flex items-center justify-between mt-4">
+          <span class="text-lg font-black text-amber-700">800 FRW</span>
+          <button 
+            onclick="addToCart('Spaghettit (1 package)', 800)" 
+            class="bg-amber-600 hover:bg-amber-700 text-white text-sm font-bold px-4 py-2 rounded-lg transition"
+          >
+            + Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+  </main>
+
+  <!-- 6. SHOPPING CART DRAWER (SLIDE OVER) -->
+  <div id="cartDrawer" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 hidden transition-opacity">
+    <div class="absolute right-0 top-0 bottom-0 w-full max-w-md bg-white shadow-2xl flex flex-col p-6 overflow-y-auto">
+      
+      <!-- Drawer Header -->
+      <div class="flex items-center justify-between border-b pb-4">
+        <div class="flex items-center space-x-2">
+          <i class="fa-solid fa-bag-shopping text-brand-600 text-xl"></i>
+          <h3 class="text-xl font-bold font-heading">Your Shopping Order</h3>
+        </div>
+        <button onclick="toggleCartDrawer()" class="text-gray-400 hover:text-gray-700 text-2xl font-bold">&times;</button>
+      </div>
+
+      <!-- Cart Items Container -->
+      <div id="cartItems" class="flex-1 py-4 space-y-3">
+        <!-- Rendered by JavaScript -->
+      </div>
+
+      <!-- Drawer Footer -->
+      <div class="border-t pt-4 space-y-4">
+        <div class="flex justify-between items-center text-lg font-bold">
+          <span class="text-gray-700">Total Amount:</span>
+          <span id="cartTotal" class="text-brand-700 text-2xl font-black">0 RWF</span>
+        </div>
+
+        <div class="bg-amber-50 p-3 rounded-xl border border-amber-200 text-xs text-amber-900">
+          <p class="font-bold mb-1"><i class="fa-solid fa-truck-fast text-brand-600 mr-1"></i> Delivery in Musanze City</p>
+          <p>Order is directly sent to WhatsApp. Payment via <strong>MTN MoMo (*182#)</strong> or <strong>Airtel Money</strong> upon confirmation.</p>
+        </div>
+
+        <button onclick="sendWhatsAppOrder()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl flex items-center justify-center space-x-2 shadow-lg transition text-sm">
+          <i class="fa-brands fa-whatsapp text-lg"></i>
+          <span>Send Order via WhatsApp</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 7. MOMO / PAYMENT INFO MODAL -->
+  <div id="paymentModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4 relative">
+      <button onclick="closePaymentModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-xl font-bold">&times;</button>
+      
+      <div class="flex items-center space-x-3">
+        <div class="p-3 bg-amber-100 text-brand-700 rounded-xl">
+          <i class="fa-solid fa-mobile-screen-button text-2xl"></i>
+        </div>
+        <div>
+          <h4 class="font-bold text-lg text-gray-900">Payment Instructions</h4>
+          <p class="text-xs text-gray-500">KIVILIZA COMPANY LTD Musanze</p>
+        </div>
+      </div>
+
+      <div class="space-y-3 text-sm text-gray-700 pt-2">
+        <div class="p-3 bg-yellow-50 rounded-xl border border-yellow-200">
+          <p class="font-bold text-yellow-900 flex items-center justify-between">
+            <span>MTN Mobile Money</span>
+            <span class="text-xs bg-yellow-400 text-gray-900 px-2 py-0.5 rounded font-black">*182#</span>
+          </p>
+          <p class="text-xs text-yellow-800 mt-1">Dial *182*8*1* Code# or *182*1*1*0788854281*amount# send to <strong>+250788854281</strong></p>
+        </div>
+
+        <div class="p-3 bg-red-50 rounded-xl border border-red-200">
+          <p class="font-bold text-red-900 flex items-center justify-between">
+            <span>Airtel Money</span>
+            <span class="text-xs bg-red-600 text-white px-2 py-0.5 rounded font-black">*182#</span>
+          </p>
+          <p class="text-xs text-red-800 mt-1">Pay via Airtel Money to registered merchant or phone number.</p>
+        </div>
+      </div>
+
+      <button onclick="closePaymentModal()" class="w-full bg-gray-900 text-white font-bold py-2.5 rounded-xl text-sm">Close Guide</button>
+    </div>
+  </div>
+
+  <!-- 8. FOOTER SECTION -->
+  <footer class="bg-gray-900 text-gray-300 py-12 px-4 border-t border-gray-800 mt-16">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 text-sm">
+      
+      <!-- Col 1: About -->
+      <div class="space-y-3">
+        <h4 class="text-white font-bold text-lg font-heading">KIVILIZA COMPANY LTD</h4>
+        <p class="text-xs text-gray-400 leading-relaxed">
+          Musanze's main supplier for high quality soft drinks, pure cooking oils, Tanzanian super rice, and first-class flour. Servicing stores, hotels, and families.
+        </p>
+        <span class="inline-block text-xs text-brand-500 font-semibold"><i class="fa-solid fa-check-circle mr-1"></i> Registered Wholesale Partner</span>
+      </div>
+
+      <!-- Col 2: Hours -->
+      <div>
+        <h4 class="text-white font-bold text-base mb-3 font-heading">Opening Hours</h4>
+        <ul class="space-y-2 text-xs text-gray-400">
+          <li class="flex justify-between"><span>Sunday - Friday:</span> <span class="text-emerald-400 font-bold">7:00 AM - 09:00 PM</span></li>
+          <li class="flex justify-between"><span>Saturday:</span> <span class="text-red-400 font-bold">Closed</span></li>
+          <li class="pt-2 text-gray-500">*Orders placed on Saturday will be delivered Sunday morning.</li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Location -->
+      <div>
+        <h4 class="text-white font-bold text-base mb-3 font-heading">Our Location</h4>
+        <p class="text-xs text-gray-400 flex items-start space-x-2">
+          <i class="fa-solid fa-location-dot text-brand-500 mt-1"></i>
+          <span>Musanze City, Northern Province, Rwanda <br><strong class="text-gray-200">Near Goico Plaza Building</strong></span>
+        </p>
+      </div>
+
+      <!-- Col 4: Payments & Contact -->
+      <div>
+        <h4 class="text-white font-bold text-base mb-3 font-heading">Contact & Payment</h4>
+        <p class="text-xs text-gray-400">📞 Phone: <a href="tel:+250788854281" class="text-white hover:underline">+250788854281</a></p>
+        <p class="text-xs text-gray-400 mt-1">💬 WhatsApp: <a href="https://wa.me/0788854281" class="text-brand-500 hover:underline">+250788854281</a></p>
+        <div class="mt-4 flex space-x-2">
+          <span class="bg-yellow-500/20 text-yellow-300 text-[10px] font-bold px-2 py-1 rounded">MTN MoMo</span>
+          <span class="bg-red-500/20 text-red-300 text-[10px] font-bold px-2 py-1 rounded">Airtel Money</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="max-w-7xl mx-auto border-t border-gray-800 mt-8 pt-6 text-center text-xs text-gray-500">
+      <p>© 2026 KIVILIZA COMPANY LTD. All rights reserved. Musanze, Rwanda.</p>
+    </div>
+  </footer>
+
+  <!-- 9. JAVASCRIPT APP CODE -->
+  <script>
+    // Configuration
+    const WHATSAPP_NUMBER = "250788000000"; // Replace with your official WhatsApp phone number
+    let cart = [];
+
+    // --- SLIDESHOW LOGIC ---
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const dotsContainer = document.getElementById('slideDots');
+
+    // Create slider dots
+    slides.forEach((_, idx) => {
+      const dot = document.createElement('button');
+      dot.className = `w-2.5 h-2.5 rounded-full transition-all ${idx === 0 ? 'bg-brand-500 w-6' : 'bg-white/50'}`;
+      dot.onclick = () => goToSlide(idx);
+      dotsContainer.appendChild(dot);
+    });
+
+    function updateSlides() {
+      slides.forEach((slide, idx) => {
+        if (idx === currentSlide) {
+          slide.classList.remove('opacity-0');
+          slide.classList.add('opacity-100');
+        } else {
+          slide.classList.remove('opacity-100');
+          slide.classList.add('opacity-0');
+        }
+      });
+
+      const dots = dotsContainer.children;
+      Array.from(dots).forEach((dot, idx) => {
+        if (idx === currentSlide) {
+          dot.className = 'w-6 h-2.5 bg-brand-500 rounded-full transition-all';
+        } else {
+          dot.className = 'w-2.5 h-2.5 bg-white/50 rounded-full transition-all';
+        }
+      });
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      updateSlides();
+    }
+
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+      updateSlides();
+    }
+
+    function goToSlide(idx) {
+      currentSlide = idx;
+      updateSlides();
+    }
+
+    // Auto Advance Slideshow every 4 seconds
+    setInterval(nextSlide, 4000);
+
+
+    // --- CART MANAGEMENT LOGIC ---
+    function toggleCartDrawer() {
+      const drawer = document.getElementById('cartDrawer');
+      drawer.classList.toggle('hidden');
+    }
+
+    function addToCart(name, price) {
+      const existing = cart.find(item => item.name === name);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ name: name, price: price, qty: 1 });
+      }
+      updateCartUI();
+      toggleCartDrawer();
+    }
+
+    function updateQty(index, delta) {
+      cart[index].qty += delta;
+      if (cart[index].qty <= 0) {
+        cart.splice(index, 1);
+      }
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      const cartItems = document.getElementById('cartItems');
+      const cartCount = document.getElementById('cartCount');
+      const cartTotal = document.getElementById('cartTotal');
+
+      let total = 0;
+      let count = 0;
+
+      if (cart.length === 0) {
+        cartItems.innerHTML = `
+          <div class="text-center py-12 text-gray-400">
+            <i class="fa-solid fa-cart-flatbed text-4xl mb-2 text-gray-300"></i>
+            <p>Your cart is empty.</p>
+          </div>
+        `;
+      } else {
+        cartItems.innerHTML = cart.map((item, i) => {
+          const itemTotal = item.price * item.qty;
+          total += itemTotal;
+          count += item.qty;
+
+          return `
+            <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl border border-gray-100">
+              <div class="flex-1 pr-2">
+                <h5 class="font-bold text-gray-800 text-sm leading-snug">${item.name}</h5>
+                <span class="text-xs text-brand-700 font-semibold">${item.price.toLocaleString()} RWF</span>
+              </div>
+              <div class="flex items-center space-x-2">
+                <div class="flex items-center bg-white border border-gray-200 rounded-lg overflow-hidden text-xs">
+                  <button onclick="updateQty(${i}, -1)" class="px-2 py-1 bg-gray-100 hover:bg-gray-200 font-bold">-</button>
+                  <span class="px-3 font-bold">${item.qty}</span>
+                  <button onclick="updateQty(${i}, 1)" class="px-2 py-1 bg-gray-100 hover:bg-gray-200 font-bold">+</button>
+                </div>
+                <span class="text-xs font-black text-gray-900 min-w-[65px] text-right">${itemTotal.toLocaleString()} RWF</span>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      cartCount.innerText = count;
+      cartTotal.innerText = total.toLocaleString() + ' RWF';
+    }
+
+    // WhatsApp Direct Checkout Order
+    function sendWhatsAppOrder() {
+      if (cart.length === 0) {
+        alert("Please add at least one product to your cart first!");
+        return;
+      }
+
+      let message = "🛒 *NEW ORDER - KIVILIZA COMPANY LTD*\n";
+      message += "📍 Location: Musanze (Near Goico Plaza)\n\n";
+      message += "*Items Ordered:*\n";
+
+      let total = 0;
+      cart.forEach((item, index) => {
+        const itemTotal = item.price * item.qty;
+        total += itemTotal;
+        message += `${index + 1}. ${item.name} x${item.qty} = ${itemTotal.toLocaleString()} RWF\n`;
+      });
+
+      message += `\n💰 *Total Amount:* ${total.toLocaleString()} RWF\n`;
+      message += `💳 *Payment Method:* MTN Mobile Money / Airtel Money\n\n`;
+      message += "Please confirm my order and let me know the delivery details in Musanze.";
+
+      const encodedURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+      window.open(encodedURL, '_blank');
+    }
+
+    // --- SEARCH FILTER FUNCTION ---
+    function searchProducts() {
+      const query = document.getElementById('searchInput').value.toLowerCase();
+      filterCards(query);
+    }
+
+    function searchProductsMobile() {
+      const query = document.getElementById('searchInputMobile').value.toLowerCase();
+      filterCards(query);
+    }
+
+    function filterCards(query) {
+      const cards = document.querySelectorAll('.product-card');
+      cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        if (text.includes(query)) {
+          card.style.display = "block";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    }
+
+    // --- MODALS ---
+    function openPaymentModal() {
+      document.getElementById('paymentModal').classList.remove('hidden');
+    }
+
+    function closePaymentModal() {
+      document.getElementById('paymentModal').classList.add('hidden');
+    }
+  </script>
+
+</body>
+</html>
